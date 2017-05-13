@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tipPercentageTextField;
 @property (nonatomic) NSInteger billAmount;
@@ -19,10 +19,18 @@
 
 @implementation ViewController
 
-//user can enter a bill amount into a UITextField
 
+//for stretch goal we can do NSNotification center and subscribe to notifications of UIKeyboardWillShowNotification
+// this notifcation passes a dictionary which will give us access to UIKeyboardFrameEndUserInfoKey which will hold the location and size of the keyboard after it is on screen.
+//somehow use that value to adjust our view up by an equal amount
+
+
+//maybe use UITextFieldDeleage to auto update the label on changes?
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.billAmountTextField.delegate = self;
+    //calculate tip whenever the bill amount is changed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateTipButtonPressed) name:UITextFieldTextDidChangeNotification object: nil];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
