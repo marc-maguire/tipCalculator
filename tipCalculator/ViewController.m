@@ -32,10 +32,17 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)calculateTipButtonPressed {
-    
     self.billAmount = [self.billAmountTextField.text integerValue];
-    self.tipAmountLabel.text = [NSString stringWithFormat:@"Tip Amount: $%.02f",self.billAmount * 0.15];
+   
+    if ([self.tipPercentageTextField.text  isEqual: @""]) {
     
+        self.tipAmountLabel.text = [NSString stringWithFormat:@"Tip Amount: $%.02f",self.billAmount * 0.15];
+        
+    } else {
+        
+          self.tipAmountLabel.text = [NSString stringWithFormat:@"Tip Amount: $%.2f",self.billAmount * ([self.tipPercentageTextField.text integerValue]/100.0)];
+        
+    }
     
 }
 
