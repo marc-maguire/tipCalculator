@@ -39,7 +39,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)calculateTipButtonPressed {
+- (void)calculateTip {
     self.billAmount = [self.billAmountTextField.text integerValue];
    
     if ([self.tipPercentageTextField.text  isEqual: @""]) {
