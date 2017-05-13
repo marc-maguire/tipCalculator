@@ -30,8 +30,9 @@
     [super viewDidLoad];
     self.billAmountTextField.delegate = self;
     //calculate tip whenever the bill amount is changed
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateTipButtonPressed) name:UITextFieldTextDidChangeNotification object: nil];
-    // Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calculateTip) name:UITextFieldTextDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewFrame) name:UIKeyboardWillShowNotification object: nil];
+
 }
 
 
@@ -49,9 +50,12 @@
     } else {
         
           self.tipAmountLabel.text = [NSString stringWithFormat:@"Tip Amount: $%.2f",self.billAmount * ([self.tipPercentageTextField.text integerValue]/100.0)];
-        
     }
+}
+- (void)updateViewFrame {
     
+    CGRect newFrame = self.view.frame;
+//    newFrame.origin.y +=
 }
 
 
